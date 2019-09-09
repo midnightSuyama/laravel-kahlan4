@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - '7.2'
+  - '7.3'
+
+before_script:
+  - cd test-project
+  - composer install
+  - touch database/database.sqlite
+  - php artisan migrate --env=testing
+
+script:
+  - ./vendor/bin/kahlan

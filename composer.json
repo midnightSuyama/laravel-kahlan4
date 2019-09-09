@@ -1,0 +1,30 @@
+{
+    "name": "midnightsuyama/laravel-kahlan4",
+    "description": "Kahlan specs suite for Laravel",
+    "keywords": [
+        "laravel",
+        "kahlan",
+        "testing"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/midnightSuyama/laravel-kahlan4",
+    "authors": [
+        {
+            "name": "midnightSuyama",
+            "email": "midnightSuyama@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "laravel/framework": "^6.0",
+        "kahlan/kahlan": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelKahlan4\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "cd test-project && ./vendor/bin/kahlan"
+    }
+}
