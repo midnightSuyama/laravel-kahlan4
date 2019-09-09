@@ -1,5 +1,7 @@
 # laravel-kahlan4
 
+[![Build Status](https://travis-ci.org/midnightSuyama/laravel-kahlan4.svg?branch=master)](https://travis-ci.org/midnightSuyama/laravel-kahlan4)
+
 Kahlan specs suite for Laravel
 
 ## Features
