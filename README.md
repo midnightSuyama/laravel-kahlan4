@@ -1,5 +1,6 @@
 # laravel-kahlan4
 
+[![Latest Stable Version](https://poser.pugx.org/midnightsuyama/laravel-kahlan4/version)](https://packagist.org/packages/midnightsuyama/laravel-kahlan4)
 [![Build Status](https://travis-ci.org/midnightSuyama/laravel-kahlan4.svg?branch=master)](https://travis-ci.org/midnightSuyama/laravel-kahlan4)
 
 Kahlan specs suite for Laravel
