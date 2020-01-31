@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\TestResponse;
-use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Testing\TestCase;
+use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Support\Testing\Fakes\NotificationFake;
 
 describe('Matcher', function() {
     beforeEach(function() {
@@ -369,6 +370,47 @@ describe('Matcher', function() {
                 $this->laravel->shouldAllowMockingProtectedMethods();
                 expect($this->laravel)->toPassSoftDeleted('table', [], null);
                 $this->laravel->shouldHaveReceived()->assertSoftDeleted('table', [], null);
+            });
+        });
+    });
+
+    context('Notification', function() {
+        beforeEach(function() {
+            $this->notification = Mockery::spy(NotificationFake::class);
+        });
+
+        describe('toPassNothingSent', function() {
+            it('calls assertNothingSent()', function() {
+                expect($this->notification)->toPassNothingSent();
+                $this->notification->shouldHaveReceived()->assertNothingSent();
+            });
+        });
+
+        describe('toPassSentTo', function() {
+            it('calls assertSentTo()', function() {
+                expect($this->notification)->toPassSentTo('notifiable', 'notification', null);
+                $this->notification->shouldHaveReceived()->assertSentTo('notifiable', 'notification', null);
+            });
+        });
+
+        describe('toPassNotSentTo', function() {
+            it('calls assertNotSentTo()', function() {
+                expect($this->notification)->toPassNotSentTo('notifiable', 'notification', null);
+                $this->notification->shouldHaveReceived()->assertNotSentTo('notifiable', 'notification', null);
+            });
+        });
+
+        describe('toPassSentToTimes', function() {
+            it('calls assertSentToTimes()', function() {
+                expect($this->notification)->toPassSentToTimes('notifiable', 'notification', 3);
+                $this->notification->shouldHaveReceived()->assertSentToTimes('notifiable', 'notification', 3);
+            });
+        });
+
+        describe('toPassTimesSent', function() {
+            it('calls assertTimesSent()', function() {
+                expect($this->notification)->toPassTimesSent(3, 'notification');
+                $this->notification->shouldHaveReceived()->assertTimesSent(3, 'notification');
             });
         });
     });

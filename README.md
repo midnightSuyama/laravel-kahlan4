@@ -210,6 +210,32 @@ describe('User table', function() {
 |toPassDatabaseMissing(_$table_, array _$data_, _$connection_ = null)|A given where condition does not exist in the database.|
 |toPassSoftDeleted(_$table_, array _$data_ = [], _$connection_ = null)|The given record has been deleted.|
 
+### Notification
+
+```php
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
+
+describe('User', function() {
+    it('is notified', function() {
+        $notification = Notification::fake();
+        expect($notification)->toPassNothingSent();
+
+        $user = factory(App\User::class)->create();
+        $user->notify(new VerifyEmail);
+        expect($notification)->toPassSentTo($user, VerifyEmail::class);
+    });
+});
+```
+
+|Matcher|Description|
+|:---|:---|
+|toPassNothingSent()|No notifications were sent.|
+|toPassSentTo(_$notifiable_, _$notification_, _$callback_ = null)|The given notification was sent based on a truth-test callback.|
+|toPassNotSentTo(_$notifiable_, _$notification_, _$callback_ = null)|The given notification was not sent based on a truth-test callback.|
+|toPassSentToTimes(_$notifiable_, _$notification_, _$times_ = 1)|The given notification was sent a number of times.|
+|toPassTimesSent(_$expectedCount_, _$notification_)|The total amount of times a notification was sent.|
+
 ## Test
 
 ```
