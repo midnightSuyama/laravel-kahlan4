@@ -50,6 +50,21 @@ describe('Matcher', function() {
             });
         });
 
+        describe('toPassCreated', function() {
+            it('calls assertCreated()', function() {
+                expect($this->response)->toPassCreated();
+                $this->response->shouldHaveReceived()->assertCreated();
+            });
+        });
+
+        describe('toPassNoContent', function() {
+            it('calls assertNoContent()', function() {
+                expect($this->response)->toPassNoContent(204);
+                $this->response->shouldHaveReceived()->assertNoContent(204);
+            });
+        });
+
+
         describe('toPassStatus', function() {
             it('calls assertStatus()', function() {
                 expect($this->response)->toPassStatus(200);
@@ -194,6 +209,13 @@ describe('Matcher', function() {
             it('calls assertJsonMissingExact()', function() {
                 expect($this->response)->toPassJsonMissingExact([]);
                 $this->response->shouldHaveReceived()->assertJsonMissingExact([]);
+            });
+        });
+
+        describe('toPassJsonPath', function() {
+            it('calls assertJsonPath()', function() {
+                expect($this->response)->toPassJsonPath('path', [], false);
+                $this->response->shouldHaveReceived()->assertJsonPath('path', [], false);
             });
         });
 
