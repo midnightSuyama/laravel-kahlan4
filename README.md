@@ -135,6 +135,8 @@ describe('Response', function() {
 |toPassNotFound()|The response has a not found status code.|
 |toPassForbidden()|The response has a forbidden status code.|
 |toPassUnauthorized()|The response has an unauthorized status code.|
+|toPassCreated()|The response has a 201 status code.
+|toPassNoContent(_$status_ = 204)|The response has the given status code and no content.
 |toPassStatus(_$status_)|The response has the given status code.|
 |toPassRedirect(_$uri_ = null)|The response is redirecting to a given URI.|
 |toPassHeader(_$headerName_, _$value_ = null)|The response contains the given header and equals the optional value.|
@@ -156,6 +158,7 @@ describe('Response', function() {
 |toPassJsonFragment(array _$data_)|The response contains the given JSON fragment.|
 |toPassJsonMissing(array _$data_, _$exact_ = false)|The response does not contain the given JSON fragment.|
 |toPassJsonMissingExact(array _$data_)|The response does not contain the exact JSON fragment.|
+|toPassJsonPath(_$path_, _$expect_, _$strict_ = false)|The expected value exists at the given path in the response.
 |toPassJsonStructure(array _$structure_ = null, _$responseData_ = null)|The response has a given JSON structure.|
 |toPassJsonCount(int _$count_, _$key_ = null)|The response JSON has the expected count of items at the given key.|
 |toPassJsonValidationErrors(_$errors_)|The response has the given JSON validation errors.|
