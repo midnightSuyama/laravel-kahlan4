@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassPlainCookie extends BaseMatcher
 {
-    static function match(TestResponse $response, $cookieName, $value=null)
+    static function match($response, $cookieName, $value=null)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertPlainCookie().',
             compact('cookieName', 'value')

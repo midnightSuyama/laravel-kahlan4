@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassStatus extends BaseMatcher
 {
-    static function match(TestResponse $response, $status)
+    static function match($response, $status)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertStatus().',
             compact('status')

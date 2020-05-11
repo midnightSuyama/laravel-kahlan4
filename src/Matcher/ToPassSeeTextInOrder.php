@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassSeeTextInOrder extends BaseMatcher
 {
-    static function match(TestResponse $response, array $values)
+    static function match($response, array $values)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertSeeTextInOrder().',
             compact('values')

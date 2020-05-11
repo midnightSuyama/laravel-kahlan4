@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassJsonPath extends BaseMatcher
 {
-    static function match(TestResponse $response, $path, $expect, $strict = false)
+    static function match($response, $path, $expect, $strict = false)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertJsonPath().',
             compact('path', 'expect', 'strict')

@@ -2,6 +2,7 @@
 
 namespace LaravelKahlan4\Matcher;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\ExpectationFailedException;
 
 abstract class BaseMatcher
@@ -28,5 +29,15 @@ abstract class BaseMatcher
         }
 
         return true;
+    }
+
+    protected static function ensureValidResponse($response)
+    {
+        if (
+            !$response instanceof \Illuminate\Foundation\Testing\TestResponse  // 6.x
+            && !$response instanceof \Illuminate\Testing\TestResponse          // 7.x
+        ) {
+            throw new InvalidArgumentException('Response must be an instance of \Illuminate\Foundation\Testing\TestResponse or \Illuminate\Testing\TestResponse.');
+        }
     }
 }

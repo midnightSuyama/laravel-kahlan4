@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassHeaderMissing extends BaseMatcher
 {
-    static function match(TestResponse $response, $headerName)
+    static function match($response, $headerName)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertHeaderMissing().',
             compact('headerName')

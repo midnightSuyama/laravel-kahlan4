@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassDontSeeText extends BaseMatcher
 {
-    static function match(TestResponse $response, $value)
+    static function match($response, $value)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertDontSeeText().',
             compact('value')
