@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassJsonFragment extends BaseMatcher
 {
-    static function match(TestResponse $response, array $data)
+    static function match($response, array $data)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertJsonFragment().',
             compact('data')

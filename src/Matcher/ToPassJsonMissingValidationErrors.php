@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassJsonMissingValidationErrors extends BaseMatcher
 {
-    static function match(TestResponse $response, $keys=null)
+    static function match($response, $keys=null)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertJsonMissingValidationErrors().',
             compact('keys')

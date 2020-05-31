@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassSessionDoesntHaveErrors extends BaseMatcher
 {
-    static function match(TestResponse $response, $keys=[], $format=null, $errorBag='default')
+    static function match($response, $keys=[], $format=null, $errorBag='default')
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertSessionDoesntHaveErrors().',
             compact('keys', 'format', 'errorBag')

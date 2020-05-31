@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassRedirect extends BaseMatcher
 {
-    static function match(TestResponse $response, $uri=null)
+    static function match($response, $uri=null)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertRedirect().',
             compact('uri')

@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassLocation extends BaseMatcher
 {
-    static function match(TestResponse $response, $uri)
+    static function match($response, $uri)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertLocation().',
             compact('uri')

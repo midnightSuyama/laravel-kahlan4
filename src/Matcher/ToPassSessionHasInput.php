@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassSessionHasInput extends BaseMatcher
 {
-    static function match(TestResponse $response, $key, $value=null)
+    static function match($response, $key, $value=null)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertSessionHasInput().',
             compact('key', 'value')

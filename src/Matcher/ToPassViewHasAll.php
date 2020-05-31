@@ -2,12 +2,12 @@
 
 namespace LaravelKahlan4\Matcher;
 
-use Illuminate\Foundation\Testing\TestResponse;
-
 class ToPassViewHasAll extends BaseMatcher
 {
-    static function match(TestResponse $response, array $bindings)
+    static function match($response, array $bindings)
     {
+        static::ensureValidResponse($response);
+
         static::buildDescription(
             'pass assertViewHasAll().',
             compact('bindings')
