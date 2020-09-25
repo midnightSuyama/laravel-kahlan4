@@ -23,7 +23,11 @@ describe('Laravel', function() {
     });
 
     it('works authentication test', function() {
-        $user = factory(App\User::class)->make();
+        if (version_compare(app()->version(), '8.0.0', '<')) {
+            $user = factory(App\User::class)->make();
+        } else {
+            $user = App\Models\User::factory()->make();
+        }
         $this->laravel->actingAs($user);
         expect($this->laravel)->toPassAuthenticated();
     });
@@ -42,7 +46,11 @@ describe('Laravel', function() {
         });
 
         it('works database test', function() {
-            $user = factory(App\User::class)->create();
+            if (version_compare(app()->version(), '8.0.0', '<')) {
+                $user = factory(App\User::class)->create();
+            } else {
+                $user = App\Models\User::factory()->create();
+            }
             expect($this->laravel)->toPassDatabaseHas('users', ['email' => $user['email']]);
         });
     });
