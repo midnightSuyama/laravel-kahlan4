@@ -1,0 +1,49 @@
+name: run-tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.2, 7.3, 7.4, 8.0]
+        laravel: [6.*, 7.*, 8.*]
+        kahlan: [4.*, 5.*]
+        exclude:
+          - php: 8.0
+            kahlan: 4.*
+          - php: 7.2
+            laravel: 8.*
+
+    name: PHP${{ matrix.php }} - Laravel${{ matrix.laravel }} - Kahlan${{ matrix.kahlan }}
+
+    env:
+      DB_DATABASE: database/database.sqlite
+      DB_CONNECTION: sqlite
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: pdo_sqlite
+          coverage: none
+
+      - name: Setup laravel
+        run: |
+          composer create-project "laravel/laravel:${{ matrix.laravel }}" --prefer-dist --no-interaction test-project
+          cd test-project
+          composer require "kahlan/kahlan:${{ matrix.kahlan }}" --prefer-dist --no-interaction
+          touch database/database.sqlite
+          php artisan migrate --env=testing
+          ln -s ../spec .
+
+      - name: Execute tests
+        run: |
+          cd test-project
+          vendor/bin/kahlan --config=spec/kahlan-config.php
