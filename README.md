@@ -1,7 +1,7 @@
 # laravel-kahlan4
 
 [![Latest Stable Version](https://poser.pugx.org/midnightsuyama/laravel-kahlan4/version)](https://packagist.org/packages/midnightsuyama/laravel-kahlan4)
-[![Build Status](https://github.com/midnightSuyama/laravel-kahlan4/actions/workflows/run-tests/badge.svg)](https://github.com/midnightSuyama/laravel-kahlan4/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Build Status](https://github.com/midnightSuyama/laravel-kahlan4/actions/workflows/run-tests.yml/badge.svg?branch=master)](https://github.com/midnightSuyama/laravel-kahlan4/actions?query=workflow%3ATests+branch%3Amaster)
 
 Kahlan specs suite for Laravel
 
